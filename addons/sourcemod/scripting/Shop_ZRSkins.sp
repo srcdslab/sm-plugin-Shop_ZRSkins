@@ -103,14 +103,14 @@ public void OnClientPutInServer(int client)
 public void Shop_Started()
 {
 	// Shop_RegisterCategory("skins", "Скины", "всё для людей и зомби", INVALID_FUNCTION, INVALID_FUNCTION, INVALID_FUNCTION, OnCategorySelected);
-	g_category_zombies = Shop_RegisterCategory("skins_zombies", "Zombies Skins", "",/*"zombies skins desc",*/ INVALID_FUNCTION, INVALID_FUNCTION, OnShouldDisplayCategory);
-	g_category_humans = Shop_RegisterCategory("skins_humans", "Humans Skins", "",/*"humans skins desc",*/ INVALID_FUNCTION, INVALID_FUNCTION, OnShouldDisplayCategory);
+	g_category_zombies = Shop_RegisterCategory("skins_zombies", "Zombies Skins", "Choose a zombie skin", INVALID_FUNCTION, INVALID_FUNCTION, OnShouldDisplayCategory);
+	g_category_humans = Shop_RegisterCategory("skins_humans", "Humans Skins", "Choose a human skin", INVALID_FUNCTION, INVALID_FUNCTION, OnShouldDisplayCategory);
 	
 	PopulateCategory(g_category_zombies, "configs/shop/skins_zombies.txt");
 	PopulateCategory(g_category_humans, "configs/shop/skins_humans.txt");
 }
 
-public bool OnShouldDisplayCategory(int client, CategoryId category_id, char[] category)
+public bool OnShouldDisplayCategory(int client, CategoryId category_id, char[] category, ShopMenu menu)
 {
 	if ( g_shop_skins_zombie.BoolValue == false && category_id == g_category_zombies ) {
 		return false;
