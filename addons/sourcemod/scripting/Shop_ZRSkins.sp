@@ -13,7 +13,7 @@
 // ==============================================================================================================================
 // >>> PLUGIN INFORMATION
 // ==============================================================================================================================
-#define PLUGIN_VERSION "1.0"
+#define PLUGIN_VERSION "1.1"
 public Plugin myinfo =
 {
 	name 			= "[Shop] ZR Skins",
@@ -200,7 +200,7 @@ public ShopAction OnSkinSelected(int client, CategoryId category_id, const char[
 	return Shop_UseOff;
 }
 
-public int OnPreviewSkin(int client, CategoryId category_id, const char[] category, ItemId item_id, const char[] item)
+public void OnPreviewSkin(int client, CategoryId category_id, const char[] category, ItemId item_id, const char[] item)
 {
 	char anim[PMP], skin[PMP];
 	Shop_GetItemCustomInfoString(item_id, "anim", SZF(anim), "default");
@@ -216,6 +216,7 @@ public int OnPreviewSkin(int client, CategoryId category_id, const char[] catego
 public Action AlreadyUsedBack(Handle timer, int client)
 {
 	g_in_preview[client] = false;
+	return Plugin_Handled;
 }
 
 void PreviewSkins(int client, const char[] sModel="", const char[] animation = "")
@@ -250,12 +251,12 @@ public Action SetTransmitSkin(int entity, int client)
 // ==============================================================================================================================
 public void Ev_PlayerSpawn(Event event, const char[] event_name, bool dont_broadcast)
 {
-	CreateTimer(1.0, Timer_ChangeSkin, event.GetInt("userid"));
+	CreateTimer(0.5, Timer_ChangeSkin, event.GetInt("userid"));
 }
 
 public void ZR_OnClientInfected(int client, int attacker, bool motherInfect, bool respawnOverride, bool respawn)
 {
-	CreateTimer(1.0, Timer_ChangeSkin, UID(client));
+	CreateTimer(0.5, Timer_ChangeSkin, UID(client));
 }
 
 public Action Timer_ChangeSkin(Handle timer, any userid)
@@ -273,14 +274,15 @@ public Action Timer_ChangeSkin(Handle timer, any userid)
 			}
 		}
 	}
+	return Plugin_Continue;
 }
 
 void SetSkinSafe(int client, const char[] skin)
 {
 	if ( skin[0] != 0 ) {
 		SetEntityModel(client, skin);
-		SetEntityRenderMode(client, RENDER_TRANSCOLOR);
-		SetEntityRenderColor(client, 255, 255, 255, 255);
+		//SetEntityRenderMode(client, RENDER_TRANSCOLOR);
+		//SetEntityRenderColor(client, 255, 255, 255, 255);
 	}
 }
 
@@ -445,7 +447,7 @@ stock int Array_FindString(const char[][] array, int size, const char[] str, boo
 	return -1;
 }
 
-stock bool File_GetFileName(const char[] path, char[] buffer, int size)
+stock void File_GetFileName(const char[] path, char[] buffer, int size)
 {	
 	if (path[0] == '\0') 
 	{
@@ -460,7 +462,7 @@ stock bool File_GetFileName(const char[] path, char[] buffer, int size)
 	if (pos_ext != -1) buffer[pos_ext] = '\0';
 }
 
-stock bool File_GetDirName(const char[] path, char[] buffer, int size)
+stock void File_GetDirName(const char[] path, char[] buffer, int size)
 {	
 	if (path[0] == '\0') 
 	{
@@ -485,7 +487,7 @@ stock bool File_GetDirName(const char[] path, char[] buffer, int size)
 	buffer[pos_start] = '\0';
 }
 
-stock bool File_GetBaseName(const char[] path, char[] buffer, int size)
+stock void File_GetBaseName(const char[] path, char[] buffer, int size)
 {	
 	if (path[0] == '\0') 
 	{
