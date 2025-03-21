@@ -13,7 +13,7 @@
 // ==============================================================================================================================
 // >>> PLUGIN INFORMATION
 // ==============================================================================================================================
-#define PLUGIN_VERSION "1.1"
+#define PLUGIN_VERSION "1.1.1"
 public Plugin myinfo =
 {
 	name 			= "[Shop] ZR Skins",
@@ -167,6 +167,12 @@ void PopulateCategory(CategoryId category, const char[] source)
 		kv.GetString("anim", SZF(anim));
 		if ( !IsModelPrecached(path) ) {
 			PrecacheModel(path);
+		}
+
+		ItemId existingItemId = Shop_GetItemId(category, name);
+		if (existingItemId != INVALID_ITEM && Shop_IsItemExists(existingItemId)) {
+			Shop_UnregisterItem(existingItemId);
+			LogMessage("Item %s already existed and was removed before re-adding", name);
 		}
 		
 		Shop_StartItem(category, name);
