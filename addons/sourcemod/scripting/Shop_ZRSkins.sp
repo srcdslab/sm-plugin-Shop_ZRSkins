@@ -13,13 +13,12 @@
 // ==============================================================================================================================
 // >>> PLUGIN INFORMATION
 // ==============================================================================================================================
-#define PLUGIN_VERSION "1.1.1"
 public Plugin myinfo =
 {
 	name 			= "[Shop] ZR Skins",
 	author 			= "AlexTheRegent",
 	description 	= "Buy ZR skins in the shop",
-	version 		= PLUGIN_VERSION,
+	version 		= "1.1.2",
 	url 			= ""
 }
 
