@@ -1,0 +1,38 @@
+"Phrases"
+{
+	"Skin_Changed"
+	{
+		"en"	"{green}[Shop] {default}Your skin will be changed in next round."
+		"fr"	"{green}[Shop] {default}Votre skin sera changé au prochain round."
+		"ru"	"{green}[Shop] {default}Ваш скин будет изменён в следующем раунде."
+		"chi"	"{green}[Shop] {default}您的皮肤将在下一回合更换。"
+		"es"	"{green}[Shop] {default}Tu skin será cambiado en la próxima ronda."
+	}
+
+	"Preview_Failed"
+	{
+		"en"	"{green}[Shop] {default}Failed to create preview entity."
+		"fr"	"{green}[Shop] {default}Échec de la création de l'entité de prévisualisation."
+		"ru"	"{green}[Shop] {default}Не удалось создать объект предпросмотра."
+		"chi"	"{green}[Shop] {default}无法创建预览实体。"
+		"es"	"{green}[Shop] {default}Error al crear la entidad de previsualización."
+	}
+
+    "Skin_NotFound"
+    {
+        "en"	"{green}[Shop] {default}Skin file path not found."
+        "fr"	"{green}[Shop] {default}Chemin du fichier de skin introuvable."
+        "ru"	"{green}[Shop] {default}Путь к файлу скина не найден."
+        "chi"	"{green}[Shop] {default}未找到皮肤文件路径。"
+        "es"	"{green}[Shop] {default}Ruta del archivo de skin no encontrada."
+    }
+
+    "Edicts Limit"
+	{
+		"en" "Action canceled. Server reached edicts limit. Please try again later.."
+		"fr" "Action annulée. Le serveur a atteint la limite d'edicts. Veuillez réessayer plus tard.."
+		"ru" "Действие отменено. Сервер достиг лимита edicts. Пожалуйста, попробуйте позже.."
+		"chi" "操作已取消。服务器已达到edicts限制。请稍后再试.."
+		"es" "Acción cancelada. El servidor alcanzó el límite de edicts. Por favor, inténtalo de nuevo más tarde.."
+	}
+}
