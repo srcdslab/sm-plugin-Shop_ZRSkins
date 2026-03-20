@@ -151,11 +151,11 @@ public ShopAction OnSkinSelected(int client, CategoryId category_id, const char[
 {
 	if ( !isOn && !elapsed ) {
 		if ( category_id == g_category_zombies ) {
-			Shop_GetItemCustomInfoString(item_id, "skin", g_skin_zombie[client], sizeof(g_skin_zombie[client]), "");
+			Shop_GetItemCustomInfoString(item_id, "skin", g_skin_zombie[client], sizeof(g_skin_zombie[]), "");
 			Shop_ToggleClientCategoryOff(client, category_id);
 		}
 		else {
-			Shop_GetItemCustomInfoString(item_id, "skin", g_skin_human[client], sizeof(g_skin_human[client]), "");
+			Shop_GetItemCustomInfoString(item_id, "skin", g_skin_human[client], sizeof(g_skin_human[]), "");
 			Shop_ToggleClientCategoryOff(client, category_id);
 		}
 
@@ -194,12 +194,12 @@ void PreviewSkins(int client, const char[] sModel="", const char[] animation = "
 	}
 
 	if ( !sModel[0] ) {
-		PrintToChat(client, "%t", "Skin_NotFound");
+		CPrintToChat(client, "%t", "Skin_NotFound");
 		return;
 	}
 
 	if (GetEdictsCount() > MAXEDICTS) {
-		CPrintToChat(client, "%T %T", "Prefix", client, "Edicts Limit", client);
+		CPrintToChat(client, "%t", "Edicts Limit");
 		return;
 	}
 
