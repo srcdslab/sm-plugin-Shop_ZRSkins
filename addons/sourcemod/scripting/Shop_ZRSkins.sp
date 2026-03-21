@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name 			= "[Shop] ZR Skins",
 	author 			= "AlexTheRegent, .Rushaway",
 	description 	= "Buy ZR skins in the shop",
-	version 		= "1.2.0",
+	version 		= "1.2.1",
 	url 			= ""
 };
 
@@ -127,6 +127,11 @@ void PopulateCategory(CategoryId category, const char[] source)
 		kv.GetString("anim", anim, sizeof(anim));
 		if ( !IsModelPrecached(path) ) {
 			PrecacheModel(path);
+		}
+
+		if ( !IsModelPrecached(path) ) {
+			LogError("Model \"%s\" could not be precached, skipping item \"%s\"", path, name);
+			continue;
 		}
 
 		ItemId existingItemId = Shop_GetItemId(category, name);
@@ -278,7 +283,7 @@ public Action Timer_ChangeSkin(Handle timer, any userid)
 
 void SetSkinSafe(int client, const char[] skin)
 {
-	if ( skin[0] != 0 ) {
+	if ( skin[0] != 0 && IsModelPrecached(skin) ) {
 		SetEntityModel(client, skin);
 	}
 }
