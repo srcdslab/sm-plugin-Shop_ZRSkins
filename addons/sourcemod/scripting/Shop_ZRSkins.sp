@@ -112,11 +112,13 @@ void PopulateCategory(CategoryId category, const char[] source)
 	KeyValues kv = new KeyValues("Skins");
 	if ( !kv.ImportFromFile(path) ) {
 		LogError("File \"%s\" not found or broken", source);
+		delete kv;
 		return;
 	}
 
 	if ( !kv.GotoFirstSubKey() ) {
 		LogError("File \"%s\" is empty", source);
+		delete kv;
 		return;
 	}
 
@@ -150,6 +152,8 @@ void PopulateCategory(CategoryId category, const char[] source)
 		Shop_EndItem();
 
 	} while ( kv.GotoNextKey() );
+
+	delete kv;
 }
 
 public ShopAction OnSkinSelected(int client, CategoryId category_id, const char[] category, ItemId item_id, const char[] item, bool isOn, bool elapsed)
