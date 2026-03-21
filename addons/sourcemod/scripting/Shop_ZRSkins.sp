@@ -127,9 +127,6 @@ void PopulateCategory(CategoryId category, const char[] source)
 		kv.GetSectionName(name, sizeof(name));
 		kv.GetString("skin", path, sizeof(path));
 		kv.GetString("anim", anim, sizeof(anim));
-		if ( !IsModelPrecached(path) ) {
-			PrecacheModel(path);
-		}
 
 		ItemId existingItemId = Shop_GetItemId(category, name);
 		if (existingItemId != INVALID_ITEM && Shop_IsItemExists(existingItemId)) {
@@ -137,9 +134,17 @@ void PopulateCategory(CategoryId category, const char[] source)
 			LogMessage("Item %s already existed and was removed before re-adding", name);
 		}
 
-		if ( !IsModelPrecached(path) ) {
-			LogError("Model \"%s\" could not be precached, skipping item \"%s\"", path, name);
+		if ( path[0] == '\0' ) {
+			LogError("Item \"%s\" has an empty skin path, skipping", name);
 			continue;
+		}
+
+		if ( !IsModelPrecached(path) ) {
+			int precacheIndex = PrecacheModel(path);
+			if ( precacheIndex == 0 ) {
+				LogError("Model \"%s\" could not be precached (model table full or invalid path), skipping item \"%s\"", path, name);
+				continue;
+			}
 		}
 
 		Shop_StartItem(category, name);
