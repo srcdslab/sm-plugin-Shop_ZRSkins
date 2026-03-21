@@ -129,15 +129,15 @@ void PopulateCategory(CategoryId category, const char[] source)
 			PrecacheModel(path);
 		}
 
-		if ( !IsModelPrecached(path) ) {
-			LogError("Model \"%s\" could not be precached, skipping item \"%s\"", path, name);
-			continue;
-		}
-
 		ItemId existingItemId = Shop_GetItemId(category, name);
 		if (existingItemId != INVALID_ITEM && Shop_IsItemExists(existingItemId)) {
 			Shop_UnregisterItem(existingItemId);
 			LogMessage("Item %s already existed and was removed before re-adding", name);
+		}
+
+		if ( !IsModelPrecached(path) ) {
+			LogError("Model \"%s\" could not be precached, skipping item \"%s\"", path, name);
+			continue;
 		}
 
 		Shop_StartItem(category, name);
