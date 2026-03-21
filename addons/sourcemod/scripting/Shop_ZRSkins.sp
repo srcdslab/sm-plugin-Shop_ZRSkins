@@ -140,8 +140,7 @@ void PopulateCategory(CategoryId category, const char[] source)
 		}
 
 		if ( !IsModelPrecached(path) ) {
-			int precacheIndex = PrecacheModel(path);
-			if ( precacheIndex == 0 ) {
+			if ( PrecacheModel(path) == 0 ) {
 				LogError("Model \"%s\" could not be precached (model table full or invalid path), skipping item \"%s\"", path, name);
 				continue;
 			}
