@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name 			= "[Shop] ZR Skins",
 	author 			= "AlexTheRegent, .Rushaway",
 	description 	= "Buy ZR skins in the shop",
-	version 		= "1.2.0",
+	version 		= "1.2.1",
 	url 			= ""
 };
 
@@ -112,11 +112,13 @@ void PopulateCategory(CategoryId category, const char[] source)
 	KeyValues kv = new KeyValues("Skins");
 	if ( !kv.ImportFromFile(path) ) {
 		LogError("File \"%s\" not found or broken", source);
+		delete kv;
 		return;
 	}
 
 	if ( !kv.GotoFirstSubKey() ) {
 		LogError("File \"%s\" is empty", source);
+		delete kv;
 		return;
 	}
 
@@ -125,14 +127,23 @@ void PopulateCategory(CategoryId category, const char[] source)
 		kv.GetSectionName(name, sizeof(name));
 		kv.GetString("skin", path, sizeof(path));
 		kv.GetString("anim", anim, sizeof(anim));
-		if ( !IsModelPrecached(path) ) {
-			PrecacheModel(path);
-		}
 
 		ItemId existingItemId = Shop_GetItemId(category, name);
 		if (existingItemId != INVALID_ITEM && Shop_IsItemExists(existingItemId)) {
 			Shop_UnregisterItem(existingItemId);
 			LogMessage("Item %s already existed and was removed before re-adding", name);
+		}
+
+		if ( path[0] == '\0' ) {
+			LogError("Item \"%s\" has an empty skin path, skipping", name);
+			continue;
+		}
+
+		if ( !IsModelPrecached(path) ) {
+			if ( PrecacheModel(path) == 0 ) {
+				LogError("Model \"%s\" could not be precached (model table full or invalid path), skipping item \"%s\"", path, name);
+				continue;
+			}
 		}
 
 		Shop_StartItem(category, name);
@@ -145,6 +156,8 @@ void PopulateCategory(CategoryId category, const char[] source)
 		Shop_EndItem();
 
 	} while ( kv.GotoNextKey() );
+
+	delete kv;
 }
 
 public ShopAction OnSkinSelected(int client, CategoryId category_id, const char[] category, ItemId item_id, const char[] item, bool isOn, bool elapsed)
@@ -278,7 +291,7 @@ public Action Timer_ChangeSkin(Handle timer, any userid)
 
 void SetSkinSafe(int client, const char[] skin)
 {
-	if ( skin[0] != 0 ) {
+	if ( skin[0] != 0 && IsModelPrecached(skin) ) {
 		SetEntityModel(client, skin);
 	}
 }
