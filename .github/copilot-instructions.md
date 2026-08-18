@@ -10,24 +10,22 @@ This repository contains a SourcePawn plugin for SourceMod that integrates zombi
 ## Technical Environment & Dependencies
 
 ### Core Dependencies
-- **SourceMod**: 1.11.0+ (specified in sourceknight.yaml)
+- **SourceMod**: 1.12.x (specified in `.github/workflows/ci.yml`)
 - **Shop Core**: Main shop system (from srcdslab/sm-plugin-Shop-Core)
 - **Zombie Reloaded**: ZR mod plugin (from srcdslab/sm-plugin-zombiereloaded)
 - **MultiColors**: Colored chat functionality (from srcdslab/sm-plugin-MultiColors)
 
 ### Build System
-- **Primary Tool**: SourceKnight 0.2 (dependency management & building)
-- **Configuration**: `sourceknight.yaml` defines dependencies and build targets
+- **Primary Tool**: Native GitHub Actions workflow (`.github/workflows/ci.yml`)
+- **Compiler**: `rumblefrog/setup-sp@v1.3.1`, SourceMod 1.12.x
+- **Dependencies**: cloned directly from their git repos during CI (MultiColors, Shop-Core, ZombieReloaded)
 - **Output**: Compiled `.smx` files in `/addons/sourcemod/plugins/`
-- **CI/CD**: GitHub Actions using `maxime1907/action-sourceknight@v1`
+- **CI/CD**: GitHub Actions builds on push/PR, and auto-releases (tag `latest`) on pushes to `master`/`main`
 
 ### Build Commands
 ```bash
-# Using SourceKnight (preferred)
-sourceknight build
-
-# Manual compilation (if needed)
-spcomp -i/path/to/includes Shop_ZRSkins.sp
+# Manual compilation (mirrors CI)
+spcomp -i include -o addons/sourcemod/plugins/Shop_ZRSkins.smx addons/sourcemod/scripting/Shop_ZRSkins.sp
 ```
 
 ## Project Structure
@@ -46,7 +44,7 @@ addons/sourcemod/
 - **Shop_ZRSkins.sp**: Main plugin implementing Shop Core integration
 - **skins_*.txt**: KeyValues configuration files defining available skins
 - **skins_dlist.txt**: File paths for models to add to download table
-- **sourceknight.yaml**: Dependency management and build configuration
+- **.github/workflows/ci.yml**: Dependency management and build configuration
 
 ## Code Architecture & Patterns
 
@@ -145,28 +143,15 @@ public void ZR_OnClientInfected(int client, ...) {
 
 ## Build & CI/CD Process
 
-### Local Development
-```bash
-# Install dependencies (handled by SourceKnight)
-sourceknight install
-
-# Build plugin
-sourceknight build
-
-# Output location
-ls .sourceknight/package/addons/sourcemod/plugins/
-```
-
 ### GitHub Actions Workflow
 - **Trigger**: Push, PR, or manual dispatch
-- **Build**: Uses SourceKnight action for compilation
-- **Artifact**: Creates downloadable package
-- **Release**: Auto-creates releases for tags and main branch
+- **Build**: Sets up `spcomp` via `rumblefrog/setup-sp@v1.3.1`, clones MultiColors/Shop-Core/ZombieReloaded includes, and compiles the plugin
+- **Artifact**: Creates downloadable package (`addons/sourcemod/plugins` + `addons/sourcemod/configs`)
+- **Release**: Auto-creates/updates a `latest` tag release on pushes to `master`/`main`
 
 ### Dependency Updates
-- Dependencies defined in `sourceknight.yaml`
-- SourceMod, MultiColors, Shop Core, and ZR automatically pulled
-- Version pinning available for stability
+- Dependencies are cloned directly from their source repos in `.github/workflows/ci.yml`
+- SourceMod (1.12.x), MultiColors, Shop Core, and ZR are pulled fresh on every CI run
 
 ## Common Modification Patterns
 
