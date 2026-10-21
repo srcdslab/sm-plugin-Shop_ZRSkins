@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name 			= "[Shop] ZR Skins",
 	author 			= "AlexTheRegent, .Rushaway",
 	description 	= "Buy ZR skins in the shop",
-	version 		= "1.2.1",
+	version 		= "1.2.2",
 	url 			= ""
 };
 
@@ -325,9 +325,9 @@ stock void File_AddToDownloadsTable(char[] path, bool recursive = true, const ch
 	else if (recursive && DirExists(path)) {
 
 		char dirEntry[PLATFORM_MAX_PATH];
-		Handle __dir = OpenDirectory(path);
+		DirectoryListing __dir = OpenDirectory(path);
 
-		while (ReadDirEntry(__dir, dirEntry, sizeof(dirEntry)))
+		while (__dir.GetNext(dirEntry, sizeof(dirEntry)))
 		{
 			if (StrEqual(dirEntry, ".") || StrEqual(dirEntry, "..")) continue;
 
@@ -335,7 +335,7 @@ stock void File_AddToDownloadsTable(char[] path, bool recursive = true, const ch
 			File_AddToDownloadsTable(dirEntry, recursive, ignoreExts, size);
 		}
 
-		CloseHandle(__dir);
+		delete __dir;
 	}
 	else if (FindCharInString(path, '*', true)) {
 
@@ -353,8 +353,8 @@ stock void File_AddToDownloadsTable(char[] path, bool recursive = true, const ch
 			File_GetFileName(path, fileName, sizeof(fileName));
 			StrCat(fileName, sizeof(fileName), ".");
 
-			Handle __dir = OpenDirectory(dirName);
-			while (ReadDirEntry(__dir, dirEntry, sizeof(dirEntry))) {
+			DirectoryListing __dir = OpenDirectory(dirName);
+			while (__dir.GetNext(dirEntry, sizeof(dirEntry))) {
 
 				if (StrEqual(dirEntry, ".") || StrEqual(dirEntry, "..")) {
 					continue;
@@ -366,7 +366,7 @@ stock void File_AddToDownloadsTable(char[] path, bool recursive = true, const ch
 				}
 			}
 
-			CloseHandle(__dir);
+			delete __dir;
 		}
 	}
 
@@ -391,14 +391,14 @@ public bool TraceEntityFilterPlayers(int ent, int Mask)
 
 stock bool File_ReadDownloadList(const char[] path)
 {
-	Handle file = OpenFile(path, "r");
+	File file = OpenFile(path, "r");
 
-	if (file  == INVALID_HANDLE) return false;
+	if (file  == null) return false;
 
 	char buffer[PLATFORM_MAX_PATH];
-	while (!IsEndOfFile(file))
+	while (!file.EndOfFile())
 	{
-		ReadFileLine(file, buffer, sizeof(buffer));
+		file.ReadLine(buffer, sizeof(buffer));
 
 		int pos;
 		pos = StrContains(buffer, "//");
@@ -417,7 +417,7 @@ stock bool File_ReadDownloadList(const char[] path)
 		File_AddToDownloadsTable(buffer);
 	}
 
-	CloseHandle(file);
+	delete file;
 
 	return true;
 }
