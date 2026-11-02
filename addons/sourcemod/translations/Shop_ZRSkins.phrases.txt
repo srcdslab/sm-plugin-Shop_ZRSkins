@@ -2,11 +2,13 @@
 {
 	"Skin_Changed"
 	{
-		"en"	"{green}[Shop] {default}Your skin will be changed in next round."
+		"en"	"{green}[Shop] {default}Your skin will be changed in the next round."
 		"fr"	"{green}[Shop] {default}Votre skin sera changé au prochain round."
 		"ru"	"{green}[Shop] {default}Ваш скин будет изменён в следующем раунде."
 		"chi"	"{green}[Shop] {default}您的皮肤将在下一回合更换。"
 		"es"	"{green}[Shop] {default}Tu skin será cambiado en la próxima ronda."
+		"de"	"{green}[Shop] {default}Dein Skin wird in der nächsten Runde geändert."
+		"pt"	"{green}[Shop] {default}Sua skin será alterada na próxima rodada."
 	}
 
 	"Preview_Failed"
@@ -16,6 +18,8 @@
 		"ru"	"{green}[Shop] {default}Не удалось создать объект предпросмотра."
 		"chi"	"{green}[Shop] {default}无法创建预览实体。"
 		"es"	"{green}[Shop] {default}Error al crear la entidad de previsualización."
+		"de"	"{green}[Shop] {default}Vorschau-Entity konnte nicht erstellt werden."
+		"pt"	"{green}[Shop] {default}Falha ao criar a entidade de pré-visualização."
 	}
 
     "Skin_NotFound"
@@ -25,14 +29,18 @@
         "ru"	"{green}[Shop] {default}Путь к файлу скина не найден."
         "chi"	"{green}[Shop] {default}未找到皮肤文件路径。"
         "es"	"{green}[Shop] {default}Ruta del archivo de skin no encontrada."
+        "de"	"{green}[Shop] {default}Skin-Dateipfad nicht gefunden."
+        "pt"	"{green}[Shop] {default}Caminho do arquivo da skin não encontrado."
     }
 
     "Edicts Limit"
 	{
-		"en" "Action canceled. Server reached edicts limit. Please try again later.."
-		"fr" "Action annulée. Le serveur a atteint la limite d'edicts. Veuillez réessayer plus tard.."
-		"ru" "Действие отменено. Сервер достиг лимита edicts. Пожалуйста, попробуйте позже.."
-		"chi" "操作已取消。服务器已达到edicts限制。请稍后再试.."
-		"es" "Acción cancelada. El servidor alcanzó el límite de edicts. Por favor, inténtalo de nuevo más tarde.."
+		"en" "{green}[Shop] {default}Action canceled. Server reached edicts limit. Please try again later."
+		"fr" "{green}[Shop] {default}Action annulée. Le serveur a atteint la limite d'edicts. Veuillez réessayer plus tard."
+		"ru" "{green}[Shop] {default}Действие отменено. Сервер достиг лимита edicts. Пожалуйста, попробуйте позже."
+		"chi" "{green}[Shop] {default}操作已取消。服务器已达到edicts限制。请稍后再试。"
+		"es" "{green}[Shop] {default}Acción cancelada. El servidor alcanzó el límite de edicts. Por favor, inténtalo de nuevo más tarde."
+		"de" "{green}[Shop] {default}Aktion abgebrochen. Der Server hat das Edict-Limit erreicht. Bitte versuche es später erneut."
+		"pt" "{green}[Shop] {default}Ação cancelada. O servidor atingiu o limite de edicts. Tente novamente mais tarde."
 	}
 }
