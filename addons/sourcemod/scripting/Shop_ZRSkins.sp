@@ -19,7 +19,7 @@ public Plugin myinfo =
 	name 			= "[Shop] ZR Skins",
 	author 			= "AlexTheRegent, .Rushaway",
 	description 	= "Buy ZR skins in the shop",
-	version 		= "1.2.3",
+	version 		= "1.2.4",
 	url 			= ""
 };
 
