@@ -9,6 +9,12 @@
 		"es"	"{green}[Shop] {default}Tu skin será cambiado en la próxima ronda."
 		"de"	"{green}[Shop] {default}Dein Skin wird in der nächsten Runde geändert."
 		"pt"	"{green}[Shop] {default}Sua skin será alterada na próxima rodada."
+		"pl"	"{green}[Shop] {default}Twój skin zostanie zmieniony w następnej rundzie."
+		"tr"	"{green}[Shop] {default}Skin'in bir sonraki turda değiştirilecek."
+		"it"	"{green}[Shop] {default}La tua skin verrà cambiata nel prossimo round."
+		"ua"	"{green}[Shop] {default}Ваш скін буде змінено в наступному раунді."
+		"zho"	"{green}[Shop] {default}您的外觀將在下一回合更換。"
+		"cze"	"{green}[Shop] {default}Tvůj skin bude změněn v příštím kole."
 	}
 
 	"Preview_Failed"
@@ -20,6 +26,12 @@
 		"es"	"{green}[Shop] {default}Error al crear la entidad de previsualización."
 		"de"	"{green}[Shop] {default}Vorschau-Entity konnte nicht erstellt werden."
 		"pt"	"{green}[Shop] {default}Falha ao criar a entidade de pré-visualização."
+		"pl"	"{green}[Shop] {default}Nie udało się utworzyć encji podglądu."
+		"tr"	"{green}[Shop] {default}Önizleme varlığı oluşturulamadı."
+		"it"	"{green}[Shop] {default}Impossibile creare l'entità di anteprima."
+		"ua"	"{green}[Shop] {default}Не вдалося створити об'єкт попереднього перегляду."
+		"zho"	"{green}[Shop] {default}無法建立預覽實體。"
+		"cze"	"{green}[Shop] {default}Nepodařilo se vytvořit entitu náhledu."
 	}
 
     "Skin_NotFound"
@@ -31,6 +43,12 @@
         "es"	"{green}[Shop] {default}Ruta del archivo de skin no encontrada."
         "de"	"{green}[Shop] {default}Skin-Dateipfad nicht gefunden."
         "pt"	"{green}[Shop] {default}Caminho do arquivo da skin não encontrado."
+        "pl"	"{green}[Shop] {default}Nie znaleziono ścieżki do pliku skina."
+        "tr"	"{green}[Shop] {default}Skin dosyası yolu bulunamadı."
+        "it"	"{green}[Shop] {default}Percorso del file della skin non trovato."
+        "ua"	"{green}[Shop] {default}Шлях до файлу скіна не знайдено."
+        "zho"	"{green}[Shop] {default}找不到外觀檔案路徑。"
+        "cze"	"{green}[Shop] {default}Cesta k souboru skinu nebyla nalezena."
     }
 
     "Edicts Limit"
@@ -42,5 +60,11 @@
 		"es" "{green}[Shop] {default}Acción cancelada. El servidor alcanzó el límite de edicts. Por favor, inténtalo de nuevo más tarde."
 		"de" "{green}[Shop] {default}Aktion abgebrochen. Der Server hat das Edict-Limit erreicht. Bitte versuche es später erneut."
 		"pt" "{green}[Shop] {default}Ação cancelada. O servidor atingiu o limite de edicts. Tente novamente mais tarde."
+		"pl" "{green}[Shop] {default}Akcja anulowana. Serwer osiągnął limit edictów. Spróbuj ponownie później."
+		"tr" "{green}[Shop] {default}İşlem iptal edildi. Sunucu edict sınırına ulaştı. Lütfen daha sonra tekrar deneyin."
+		"it" "{green}[Shop] {default}Azione annullata. Il server ha raggiunto il limite di edict. Riprova più tardi."
+		"ua" "{green}[Shop] {default}Дію скасовано. Сервер досяг ліміту edicts. Будь ласка, спробуйте пізніше."
+		"zho" "{green}[Shop] {default}操作已取消。伺服器已達到edicts上限。請稍後再試。"
+		"cze" "{green}[Shop] {default}Akce zrušena. Server dosáhl limitu edictů. Zkus to prosím později."
 	}
 }
